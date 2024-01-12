@@ -5,6 +5,7 @@ const passport=require('passport')
 const session=require('express-session')
 const MongoStore=require('connect-mongo')
 const authRoutes=require('./routes/auth')
+const jobRoute=require('./routes/job')
 const morgan=require('morgan')
 
 app.use(morgan('dev'));
@@ -55,9 +56,7 @@ app.use((req,res,next)=>{
 })
 
 app.use('/authenticate',authRoutes)
-
-
-
+app.use('/jobAction',jobRoute)
 
 
 app.listen(process.env.SERVER_PORT, () => {
