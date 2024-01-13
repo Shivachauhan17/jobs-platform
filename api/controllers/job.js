@@ -178,5 +178,24 @@ module.exports={
         catch(err){
             res.status(500).json({data:null,err:"some error occured while fetching sheduled applicants "})
         }
+    },
+    deleteAJob:async(req,res)=>{
+        try{
+            const id=new mongoose.Types.ObjectId(req.body.jobId)
+            await Job.deleteOne({_id:id})
+            await Applicant.deleteMany({jobId:req.body.jobId})
+            await SavedJob.deleteMany({jobId:req.body.jobId})
+
+            await JobAssociation.updateMany(
+                {jobs:{$in:[req.body.jobId]}},
+                {$pull:{jobs:req.body.jobId}}
+                )
+
+            res.status(200).json({data:req.body.jobId,err:null})
+
+        }
+        catch(err){
+            res.status(500).json({data:null,err:"some error occured while deleting the job"})
+        }
     }
 }

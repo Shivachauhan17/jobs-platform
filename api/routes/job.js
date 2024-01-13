@@ -8,5 +8,5 @@ jobRouter.post('/saveAJob',jobcontroller.saveAJob)
 jobRouter.post('/getApplicants',jobcontroller.getApplicants)
 jobRouter.post('/sheduleAApplicant',jobcontroller.sheduleAApplicant)
 jobRouter.post('/mySheduledApplicants',jobcontroller.mySheduledApplicants)
-
+jobRouter.delete('/deleteAJob',jobcontroller.deleteAJob)
 module.exports=jobRouter
