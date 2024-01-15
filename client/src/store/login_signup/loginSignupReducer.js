@@ -3,11 +3,11 @@ import loginSignupActionTypes from './loginSignupActionTypes'
 const initialState={
     userName:"",
     email:"",
-    isEmployeer:1,
+    isEmployeer:null,
     ComapanyOrProfession:"",
     password:"",
     confirmPassword:"",
-    otp:1234
+    otp:null
 }
 
 const loginSignupReducer=(state=initialState,action)=>{

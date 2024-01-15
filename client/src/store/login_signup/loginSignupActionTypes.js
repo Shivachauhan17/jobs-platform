@@ -5,7 +5,7 @@ const loginSignupActionTypes={
     SET_COMPANY_OR_PROFESSION:'lg/setCompanyOrProfession',
     SET_PASSWORD:'lg/setPassword',
     SET_CONFIRM_PASSWORD:'lg/setConfirmPassword',
-    SET_OTP:'lg/setOtp'
+    SET_OTP:'lg/setOtp',
 }
 
 export default loginSignupActionTypes
