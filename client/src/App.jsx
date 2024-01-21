@@ -1,10 +1,12 @@
 import {Route,Routes,BrowserRouter} from "react-router-dom";
-import Home from './pages/Home'
+import Home from './pages/Landing'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Otp from './pages/Otp'
+import axios from './axios/axios'
 
 const App=()=>{
+
 
   return(
     <BrowserRouter>

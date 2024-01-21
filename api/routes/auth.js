@@ -4,7 +4,9 @@ const passport=require('passport')
 
 
 authRouter.post('/local-auth-register',autheController.localRegister)
-authRouter.post('/local-auth-login',autheController.localLogin)
+authRouter.post('/local-auth-login',passport.authenticate('local',{successRedirect:'/authenticate/local-auth-login-successful',failureRedirect:'/authenticate/local-auth-login-failure'}))
+authRouter.get('/local-auth-login-successful',autheController.localLogin)
+authRouter.get('/local-auth-login-failure',autheController.localLoginFailure)
 authRouter.get('/auth/google',
     passport.authenticate('google', { scope: ['profile','email'] })
     );

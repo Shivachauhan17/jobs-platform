@@ -57,7 +57,8 @@ module.exports={
                     email:req.body.email,
                     userName:userName,
                     isEmployeer:req.body.isEmployeer,
-                    CompanyOrProfession:req.body.CompanyOrProfession
+                    CompanyOrProfession:req.body.CompanyOrProfession,
+                    password:req.body.password
                 },err:null})
 
         }
@@ -67,25 +68,27 @@ module.exports={
         }
     },
 
-    localLogin:async(req,res)=>{
-        if(req.body.email===undefined || req.body.password===undefined)
-            {
-                return res.status(400).json({data:null,err:"please send the data correctly"})
+    localLogin:async(req,res,next)=>{
+        try{
+            
+            if(req.user===undefined || req.user.email===undefined){
+                return res.status(200).json({data:null,err:"unsuccessfull credentials are wrong"})
             }
-
-            const user=User.findOne({email:req.body.email})
-
-            if(!user)
-            {
-                return res.status(403).json({data:null,err:"user already exists"})
+            const user=req.user
+            console.log(user.email)
+            const user4Session={    
+                email:user.email,
+                userName:user.email.split('@')[0],
+                isEmployeer:user.isEmployeer,
+                CompanyOrProfession:user.CompanyOrProfession
             }
-
-            const user4Session=new User({
-                userName:user.userName,
-                email:user.email
-            })
-
-            res.status(200).json({data:user4Session,err:null})
+            return res.status(200).json({data:user4Session,err:null})
+        }
+        catch(err){
+            console.log(err)
+            return res.status(500).json({data:null,err:"error occured while logging in"})
+        }
+        
     },
     sentOtpToMail:async(req,res)=>{
         try{
@@ -121,19 +124,32 @@ module.exports={
 
             await newUser.save()
             const user4Session={
-                userName:req.body.userName,
+                userName:req.body.email.split('@')[0],
                 email:req.body.email,
-                isEmployeer:req.body.isEmloyeer,
+                isEmployeer:req.body.isEmployeer,
                 CompanyOrProfession:req.body.CompanyOrProfession,
             }
 
+            
             req.session.user=user4Session
-            res.status(200).json({data:req.body.email,err:null})
+            req.session.save(err=>{
+                if(err){
+                return res.status(500).json({data:null,err:"some error occured while verifying the otp"})
+                }
+                return  res.status(200).json({data:user4Session,err:null})
+            })
+        
+
+            
+           
 
         }
         catch(err){
             console.log(err)
             res.status(500).json({data:null,err:"some error occured while verifying the otp"})
         }
+    },
+    localLoginFailure:(req,res,next)=>{
+        return res.status(200).json({data:null,err:"credentials are wrong"})
     }
 }

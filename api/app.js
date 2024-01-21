@@ -12,7 +12,6 @@ app.use(morgan('dev'));
 const connectDB=require('./config/database')
 require("dotenv").config();
 
-require('./config/passport')(passport)
 
 const corsOptions = {
   origin: 'http://localhost:5173',
@@ -25,8 +24,8 @@ app.use(express.json())
 
 app.set("trust proxy", 1);
 
-app.use(
-  session({
+
+  const sessionMiddleWare=session({
       secret: 'keyboard cat',
       resave: false,//don't save session is unmodified
       saveUninitialized:true,//don't create session untill something is stores
@@ -34,29 +33,33 @@ app.use(
         mongoUrl: process.env.DB_STRING,
         collection: 'sessions'
       }),
-      proxy:true,
+      // proxy:true,
       cookie:{
         maxAge:1000*60*60*24,
-        secure: true,
-        sameSite: "none" 
+        // secure: true,
+        // sameSite: "none" 
       }    
   })
-  )
-
+  
+app.use(sessionMiddleWare)
 require('./config/passport')(passport)
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.use((req,res,next)=>{
-  console.log("user info : ",req.user);
-  console.log("session _info",req.session);
+app.use((req, res, next) => {
+  console.log("user in session:", req.user);
   next();
-})
+});
+
 
 app.use('/authenticate',authRoutes)
 app.use('/jobAction',jobRoute)
+app.get('/',(req,res,next)=>{
+  res.send("hello")
+})
+
 
 
 app.listen(process.env.SERVER_PORT, () => {
