@@ -3,7 +3,7 @@ html {
   }
 
 .labels{
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
    
@@ -25,6 +25,18 @@ html {
     outline: none;
     background: transparent;
 }
-.ldPageGoogleButton{
-    
+.lrSubmitButton{
+    background:  transparent;
+    border: 1.5px solid #0065b2;
+    height: 40px;
+    width: 110px;
+    text-align: center;
+    padding:5px;
+    border-radius: 25px;
+    transition: background 0.5s ease;
+    font-family: none;
+}
+
+.lrSubmitButton:hover{
+    background:#0065b2 ;
 }

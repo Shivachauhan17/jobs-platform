@@ -4,6 +4,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import logSignActions from '../store/login_signup/loginSignupActions'
 import { handleError } from '../components/ErrorPopUp'
 import Cookie from '../components/Cookie'
+import LandingHeading from '../components/LandingHeading'
 
 
 function Otp() {
@@ -49,18 +50,39 @@ function Otp() {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <label>Otp:</label>
-            <input type='email' placeholder='email' value={email} onChange={(e)=>dispatch(logSignActions.setEmail(e.target.value))}/>
-            {!sendOtp?<button 
-              onClick={()=>{setSendOtp(!sendOtp) 
-              initialOtpSend()
-            }}>sendOtp</button>:<div></div>}
-            {sendOtp?<input type='number' placeholder='enter the otp' value={otp} onChange={(e)=>dispatch(logSignActions.setOtp(e.target.value))}/>:<div></div>}
-            {sendOtp?<input type='submit' value='Verify'/>:<div></div>}
-        </form>
-    </div>
+
+
+    <div className='ladingPageContainer' >
+            <LandingHeading/>
+            <div className='landingPageMainCard '>
+                <div className='landingPageSubCard landingPageSubsImage'>
+                    {/* <img/> */}
+                </div>
+                <div className='landingPageSubCard lrForm'>
+                <h2 className='lrFormHeading'>Email Verification</h2>
+                  <form className='lgButtonDiv lrFormForm' onSubmit={handleSubmit}>
+                    <div>
+                      <label className='labels'>Otp</label>
+                      <br/>
+                      <input className='inputField' type='email' placeholder='email' value={email} onChange={(e)=>dispatch(logSignActions.setEmail(e.target.value))}/>
+                    </div>
+                      <div>
+                      {!sendOtp?<button className='lrSubmitButton'
+                        onClick={()=>{setSendOtp(!sendOtp) 
+                        initialOtpSend()
+                      }}>sendOtp</button>:<div></div>}
+                      </div>
+                      <div>
+                      {sendOtp ?<input className='inputField' type='number' placeholder='enter the otp' value={otp} onChange={(e)=>dispatch(logSignActions.setOtp(e.target.value))}/>:<div></div>}
+                      </div>
+                      <div>
+                      {sendOtp?<input className='lrSubmitButton' type='submit' value='Verify'/>:<div></div>}
+                      </div>
+                  </form>
+                </div>
+            </div>
+
+        </div>
   )
 }
 
