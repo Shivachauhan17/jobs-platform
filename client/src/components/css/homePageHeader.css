@@ -1,0 +1,12 @@
+.homePageHeaderContainer{
+    background: rgb(0, 255, 106);
+    
+    height: fit-content;
+}
+
+.homePageHeaderSearchBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

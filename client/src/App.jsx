@@ -3,7 +3,8 @@ import Home from './pages/Landing'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import Otp from './pages/Otp'
-import axios from './axios/axios'
+import HomePage from "./pages/HomePage";
+import HomePageNvigationBar from "./components/HomePageNvigationBar";
 
 const App=()=>{
 
@@ -15,6 +16,7 @@ const App=()=>{
           <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>} />
           <Route path='/otp' element={<Otp/>}/>
+          <Route path='/home' element={<HomePage/>}/>
         </Routes>
     </BrowserRouter>
       

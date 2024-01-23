@@ -1,0 +1,42 @@
+.whatsSpecialPoints{
+    width: 40%;
+}
+.whatsSpecialBlock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.whatsSpecialHeading{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0065b2;
+}
+.whatsSpecialPara{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+.whatsSpecialImageBlock{
+    width:50%;
+    height: 450px;
+}
+.whatsSpecialImageImage{
+    width: 100%;
+    height: 450px;
+    border-radius: 5px;
+}
+.whatsSpecialContainer{
+    padding: 1em;
+    background: #F0F8FF;
+}
+
+@media screen and (max-width:900px){
+    .whatsSpecialImageBlock{
+        display: none;
+    }
+
+    .whatsSpecialPoints{
+        width: 90%;
+    }
+}

@@ -28,6 +28,7 @@ html {
 .lrSubmitButton{
     background:  transparent;
     border: 1.5px solid #0065b2;
+    font-size: 1rem;
     height: 40px;
     width: 110px;
     text-align: center;
@@ -39,4 +40,13 @@ html {
 
 .lrSubmitButton:hover{
     background:#0065b2 ;
+}
+
+.imagebgText{
+    margin: 0 0.5em 0 0.5em;
+    /* opacity: 0.8; */
+    color: #FBFCF8;
+    text-shadow: 2px 2px 10px gainsboro;
+    /* border:2px solid red; */
+    
 }
