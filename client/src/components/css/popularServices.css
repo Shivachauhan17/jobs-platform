@@ -8,5 +8,6 @@
 }
 
 .popularServicesContainer{
-    margin: 1em;
+    background: linear-gradient(to right,#0065b24a ,transparent ,#0065b24a );
+
 }
